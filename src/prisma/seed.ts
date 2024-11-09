@@ -1,13 +1,13 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 async function main() {
 
   const users: Prisma.UserCreateManyInput[] = [
-    {id: 'clj012abc000001qwd9fwph27', email: 'userOne@example.com', password: 'UserOnePassword'},
-    {id: 'clj012abc000002qwd2jh8z7f', email: 'userTwo@example.com', password: 'UserTwoPassword'},
-    {id: 'clj012abc000003qwdvhmnrnk', email: 'userThree@example.com', password: 'UserThreePassword'},
+    {id: 'clj012abc000001qwd9fwph27', email: 'userOne@example.com', password: 'UserOnePassword', isAdmin: false},
+    {id: 'clj012abc000002qwd2jh8z7f', email: 'userTwo@example.com', password: 'UserTwoPassword', isAdmin: true},
+    {id: 'clj012abc000003qwdvhmnrnk', email: 'userThree@example.com', password: 'UserThreePassword', isAdmin: false},
   ]
 
   const labels: Prisma.LabelCreateManyInput[] = [

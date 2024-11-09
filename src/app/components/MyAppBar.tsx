@@ -1,11 +1,10 @@
 import { AppBar, Box, Toolbar } from "@mui/material";
 import Menu from './Menu';
-import MenuDrawer from "./MenuDrawer";
+import NavDrawer from "./NavDrawer";
 
 export default function MyAppBar() {
     return (
         <AppBar>
-            <MenuDrawer />
             <div style={{flexGrow: 1}} />
             <Toolbar>
                 <Menu />

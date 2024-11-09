@@ -13,7 +13,7 @@ export default function Menu() {
     };
 
     return (
-        <Providers mode={mode}>
+        <Providers>
             <IconButton onClick={toggleTheme} color="inherit">
                 {mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>

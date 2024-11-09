@@ -1,23 +1,23 @@
-// providers.tsx
 'use client';
 
-import React, { useMemo } from 'react';
 import { AppProvider as ToolpadAppProvider } from '@toolpad/core/nextjs';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { lightTheme, darkTheme } from '../types/theme';
+import { theme } from '@/app/theme';
+import QueryClientProvider from '../react-query/QueryClientProvider';
 
-export default function Providers({ children, mode }: { children: React.ReactNode; mode: 'light' | 'dark' }) {
-    const theme = useMemo(() => (mode === 'dark' ? darkTheme : lightTheme), [mode]);
+export default function Providers({ children }: { children: React.ReactNode }) {
 
     return (
-        <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <ToolpadAppProvider theme={theme}>
-                    {children}
-                </ToolpadAppProvider>
-            </ThemeProvider>
-        </AppRouterCacheProvider>
-    );
+        <QueryClientProvider>
+            <AppRouterCacheProvider>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <ToolpadAppProvider>
+                        {children}
+                    </ToolpadAppProvider>
+                </ThemeProvider>
+            </AppRouterCacheProvider>
+        </QueryClientProvider>
+    );    
 }

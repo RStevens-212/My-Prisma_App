@@ -1,13 +1,7 @@
-import { Paper, Typography } from '@mui/material';
-import MyAppBar from './components/MyAppBar';
+'use client';
+import { LinearProgress } from '@mui/material';
 
-export default function Home() {
-  return (
-    <div>
-      <MyAppBar />
-      <Paper>
-        <Typography variant='subtitle1'>Testing this</Typography>
-      </Paper>
-    </div>
-  );
+export default function RootPage() {
+   
+  return <LinearProgress />
 }
