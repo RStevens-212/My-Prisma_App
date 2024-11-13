@@ -4,8 +4,7 @@ import NavDrawer from "./NavDrawer";
 
 export default function MyAppBar() {
     return (
-        <AppBar>
-            <div style={{flexGrow: 1}} />
+        <AppBar position='fixed'>
             <Toolbar>
                 <Menu />
             </Toolbar>

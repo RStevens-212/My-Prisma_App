@@ -1,102 +1,70 @@
 'use client';
 
 import React, { useState } from 'react';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton, Tooltip, Box, CssBaseline, Link, useTheme, Toolbar, Typography } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import SettingsIcon from '@mui/icons-material/Settings';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, CssBaseline, Link } from '@mui/material';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { styled } from '@mui/system';
 import NextLink from 'next/link';
-
-const drawerWidth = 240; // Expanded width
-const miniDrawerWidth = 80; // Collapsed width
-const drawerBackgroundColor = "#1E88E5"; // Blue like AppBar
-
-// Styled Drawer for background color
-const StyledDrawer = styled(Drawer)({
-    [`& .MuiDrawer-paper`]: {
-        backgroundColor: drawerBackgroundColor,
-        color: "#fff",
-        boxSizing: 'border-box',
-    },
-});
+import { usePathname } from 'next/navigation';
 
 export default function NavDrawer() {
-    const [open, setOpen] = useState(false);
-
-    const toggleDrawer = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
+    const pathname = usePathname();
+    const theme = useTheme();
+    const iconColor = theme.palette.grey[300];
+    const navigationItems = [
+        { text: 'Users', href: '/users', imgSrc: <PeopleIcon htmlColor={iconColor} /> },
+        { text: 'Preferences', href: '/preferences', imgSrc: <SettingsIcon htmlColor={iconColor} /> },
+        { text: 'Metrics', href: '/metrics', imgSrc: <BarChartIcon htmlColor={iconColor} /> },
+        { text: 'Admin', href: '/users', imgSrc: <AdminPanelSettingsIcon htmlColor={iconColor} /> },
+    ]
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-
-            {/* Toggle Button */}
-            <IconButton onClick={toggleDrawer} sx={{ color: 'inherit', position: 'fixed', top: 16, left: open ? drawerWidth : miniDrawerWidth }}>
-                <MenuIcon />
-            </IconButton>
-
-            {/* Drawer */}
-            <StyledDrawer
-                variant="permanent"
-                open={open}
+        <Drawer variant='permanent'
+            sx={{ width: 110, flexShrink: 0, '& .MuiDrawer-paper': { width: 110 } }}
+        >
+            <Toolbar />
+            <List
                 sx={{
-                    width: open ? drawerWidth : miniDrawerWidth,
-                    transition: 'width 0.3s',
-                    flexShrink: 0,
-                    [`& .MuiDrawer-paper`]: {
-                        width: open ? drawerWidth : miniDrawerWidth,
-                        transition: 'width 0.3s',
-                    },
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    backgroundColor: theme.palette.primary.main,
+                    padding: '0px'
                 }}
             >
-                <List>
-                    {/* Users */}
-                    <Tooltip title="Users" placement="right" disableHoverListener={open}>
-                        <ListItem>
-                            <Link href='/users' component={NextLink}>
-                                <ListItemIcon>
-                                    <PeopleIcon style={{ color: "#fff" }} />
-                                </ListItemIcon>
-                            </Link>
-                            {open && <ListItemText primary="Users" />}
-                        </ListItem>
-                    </Tooltip>
-
-                    {/* User Settings */}
-                    <Tooltip title="User Settings" placement="right" disableHoverListener={open}>
-                        <ListItem>
-                            <ListItemIcon>
-                                <Link href='/settings' component={NextLink}>
-                                    <SettingsIcon style={{ color: "#fff" }} />
-                                </Link>
+                {navigationItems.map((item, index) => (
+                    <Link key={index} component={NextLink} href={item.href}>
+                        <ListItem
+                            sx={([{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: '70px',
+                                width: '100%',
+                                '&:hover': {
+                                    backgroundColor: theme.palette.primary.dark
+                                },
+                                borderLeft: item.href === pathname ? { borderLeftColor: theme.palette.secondary.main, borderLeftWidth: '4px', borderLeftStyle: 'solid' }
+                                    : { borderLeftColor: 'transparent', borderLeftWidth: '4px', borderLeftStyle: 'solid' },
+                                padding: '0px',
+                            }, item.href === pathname ? { backgroundColor: theme.palette.primary.dark } : { backgroundColor: 'initial' }
+                            ])}
+                        >
+                            <ListItemIcon sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', color: theme.palette.primary.contrastText }} >
+                                {item.imgSrc}
+                                <Typography sx={{ fontSize: '11px', textAlign: 'center', color: theme.palette.primary.contrastText, marginTop: '7px' }} >
+                                    {item.text}
+                                </Typography>
                             </ListItemIcon>
-                            {open && <ListItemText primary="User Settings" />}
                         </ListItem>
-                    </Tooltip>
-
-                    {/* Metrics */}
-                    <Tooltip title="Metrics" placement="right" disableHoverListener={open}>
-                        <ListItem>
-                            <Link href='/metrics' component={NextLink}>
-                                <ListItemIcon>
-                                    <BarChartIcon style={{ color: "#fff" }} />
-                                </ListItemIcon>
-                            </Link>
-                            {open && <ListItemText primary="Metrics" />}
-                        </ListItem>
-                    </Tooltip>
-                </List>
-            </StyledDrawer>
-        </Box>
-    );
+                    </Link>
+                ))}
+            </List>
+        </Drawer>
+    )
 }

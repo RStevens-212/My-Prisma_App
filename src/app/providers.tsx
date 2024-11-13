@@ -5,6 +5,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { theme } from '@/app/theme';
 import QueryClientProvider from '../react-query/QueryClientProvider';
+import InitColorSchemeSchript from '@mui/material/InitColorSchemeScript'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
 
@@ -13,7 +14,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             <AppRouterCacheProvider>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    <ToolpadAppProvider>
+                    <ToolpadAppProvider theme={theme}>
+                        <InitColorSchemeSchript />
                         {children}
                     </ToolpadAppProvider>
                 </ThemeProvider>

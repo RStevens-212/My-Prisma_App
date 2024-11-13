@@ -1,8 +1,17 @@
 import React from 'react'
 import { Card, CardHeader, CardActionArea, CardActions } from '@mui/material'
 
-export default function metricCard() {
+interface MetricProps {
+    id: string;
+    name: string;
+    key: string;
+}
+
+export default function MetricCard({id, name}: MetricProps) {
+
   return (
-    <div>metricCard</div>
+    <Card key={id}>
+        <CardHeader title={name} />
+    </Card>
   )
 }

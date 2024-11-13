@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { useMemo } from 'react';
-import { Box, Toolbar, Typography } from '@mui/material';
+import { Box, Toolbar } from '@mui/material';
 import MyAppBar from './components/MyAppBar';
 import Providers from './providers';
 import NavDrawer from './components/NavDrawer';

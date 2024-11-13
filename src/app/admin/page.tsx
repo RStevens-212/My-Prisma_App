@@ -1,11 +1,11 @@
 'use client';
-import UserDataGrid from './components/UserDataGrid'
+import AdminDataGrid from "./components/AdminDataGrid";
 
 export default function UserPage() {
     
   return (
     <div>
-        <UserDataGrid />
+        <AdminDataGrid />
     </div>
   )
 }

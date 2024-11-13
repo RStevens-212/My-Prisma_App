@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   id                String               @id
+  name              String
   email             String            @unique
   password          String
   userPreferences   UserPreferences?  @relation
