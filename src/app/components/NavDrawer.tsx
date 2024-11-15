@@ -19,7 +19,7 @@ export default function NavDrawer() {
         { text: 'Users', href: '/users', imgSrc: <PeopleIcon htmlColor={iconColor} /> },
         { text: 'Preferences', href: '/preferences', imgSrc: <SettingsIcon htmlColor={iconColor} /> },
         { text: 'Metrics', href: '/metrics', imgSrc: <BarChartIcon htmlColor={iconColor} /> },
-        { text: 'Admin', href: '/users', imgSrc: <AdminPanelSettingsIcon htmlColor={iconColor} /> },
+        { text: 'Admin', href: '/admin', imgSrc: <AdminPanelSettingsIcon htmlColor={iconColor} /> },
     ]
 
     return (

@@ -53,7 +53,7 @@ function EditToolbar(props: EditToolbarProps) {
     );
 }
 
-export default function FullFeaturedCrudGrid() {
+export default function AdminDataGrid() {
 
     const getUsersQuery = useGetUsersQuery();
     const { data: getUsersQueryData, isLoading: getUsersQueryIsLoading } = getUsersQuery;
